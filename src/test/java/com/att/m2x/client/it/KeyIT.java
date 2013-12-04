@@ -24,7 +24,7 @@ import com.att.m2x.client.exception.NotFoundException;
 import com.att.m2x.client.util.TestWithSamples;
 
 
-public class KeyResourceIT extends TestWithSamples {
+public class KeyIT extends TestWithSamples {
 
     private M2XClient client;
     private String name;
