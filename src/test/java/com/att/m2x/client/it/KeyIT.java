@@ -16,6 +16,7 @@ import org.junit.Test;
 import com.att.m2x.client.api.Permission;
 import com.att.m2x.client.api.key.Key;
 import com.att.m2x.client.api.key.KeyListResponse;
+import com.att.m2x.client.util.BaseResourceIT;
 
 
 public class KeyIT extends BaseResourceIT {

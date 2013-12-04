@@ -5,9 +5,12 @@ import java.io.IOException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.util.EntityUtils;
 
 import com.att.m2x.client.exception.ClientException;
+import com.att.m2x.client.exception.ForbiddenException;
 import com.att.m2x.client.exception.NotFoundException;
+import com.att.m2x.client.exception.UnprocessableEntityException;
 
 
 public class ExecutableResource extends EmptyResource {
@@ -32,9 +35,19 @@ public class ExecutableResource extends EmptyResource {
         }
     }
 
-    private void handleCommonStatusCode(HttpResponse response) {
+    private void handleCommonStatusCode(HttpResponse response) throws IOException{
 
-        // TODO: PK,02/12: add
+        if (response.getStatusLine().getStatusCode() == 404) {
+            throw new NotFoundException(EntityUtils.toString(response.getEntity()));
+        }
+
+        if (response.getStatusLine().getStatusCode() == 403) {
+            throw new ForbiddenException(EntityUtils.toString(response.getEntity()));
+        }
+
+        if (response.getStatusLine().getStatusCode() == 422) {
+            throw new UnprocessableEntityException(EntityUtils.toString(response.getEntity()));
+        }
 
     }
 

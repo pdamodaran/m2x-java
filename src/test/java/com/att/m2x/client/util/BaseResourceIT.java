@@ -1,11 +1,10 @@
-package com.att.m2x.client.it;
+package com.att.m2x.client.util;
 
 import java.util.UUID;
 
 import org.junit.Before;
 
 import com.att.m2x.client.M2XClient;
-import com.att.m2x.client.util.TestWithSamples;
 
 
 public class BaseResourceIT extends TestWithSamples {

@@ -10,6 +10,7 @@ import org.junit.Test;
 import com.att.m2x.client.api.feed.BatchFeed;
 import com.att.m2x.client.api.feed.BlueprintFeed;
 import com.att.m2x.client.api.feed.DataSourceFeed;
+import com.att.m2x.client.util.BaseResourceIT;
 
 
 public class FeedIT extends BaseResourceIT {

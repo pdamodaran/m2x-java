@@ -14,6 +14,7 @@ import com.att.m2x.client.api.Visibility;
 import com.att.m2x.client.api.datasource.Batch;
 import com.att.m2x.client.api.datasource.Blueprint;
 import com.att.m2x.client.api.datasource.DataSource;
+import com.att.m2x.client.util.BaseResourceIT;
 
 
 public class DataSourceIT extends BaseResourceIT {
