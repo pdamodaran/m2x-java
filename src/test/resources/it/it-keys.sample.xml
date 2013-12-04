@@ -7,4 +7,10 @@
 
   </comment>
   <entry key="key.master"></entry>
+  <entry key="blueprint.id"></entry>
+  <entry key="batch.id"></entry>
+  <entry key="datasource.id"></entry>
+  <entry key="feed.blueprint.id"></entry>
+  <entry key="feed.batch.id"></entry>
+  <entry key="feed.datasource.id"></entry>
 </properties>

@@ -5,35 +5,20 @@ import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
-
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 import java.util.Date;
-import java.util.UUID;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import com.att.m2x.client.M2XClient;
 import com.att.m2x.client.api.Permission;
 import com.att.m2x.client.api.key.Key;
 import com.att.m2x.client.api.key.KeyListResponse;
-import com.att.m2x.client.exception.NotFoundException;
-import com.att.m2x.client.util.TestWithSamples;
 
 
-public class KeyIT extends TestWithSamples {
-
-    private M2XClient client;
-    private String name;
-
-    @Before
-    public void setUp() {
-        client = new M2XClient(prop("key.master"));
-        name = "it-test-" + UUID.randomUUID();
-    }
+public class KeyIT extends BaseResourceIT {
 
     @Test
     public void loadShouldReturnAtLeastOneKey() {
@@ -94,14 +79,6 @@ public class KeyIT extends TestWithSamples {
         }
 
         //client.keys().get(key.getKey());
-    }
-
-    //~
-
-    @Override
-    protected String getPathToProperties() {
-        String override = System.getenv("it.keys");
-        return override == null || override.isEmpty() ? "it/it-keys.xml" : override;
     }
 
 }

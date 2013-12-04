@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import com.att.m2x.client.api.Status;
@@ -13,9 +14,9 @@ import com.att.m2x.client.api.stream.Stream;
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = BatchFeed.class, name="batch"),
-        @JsonSubTypes.Type(value = BlueprintFeed.class, name="blueprint"),
-        @JsonSubTypes.Type(value = DataSourceFeed.class, name="datasource")
+        @Type(value = BatchFeed.class, name="batch"),
+        @Type(value = BlueprintFeed.class, name="blueprint"),
+        @Type(value = DataSourceFeed.class, name="datasource")
 })
 public abstract class CommonFeed {
 

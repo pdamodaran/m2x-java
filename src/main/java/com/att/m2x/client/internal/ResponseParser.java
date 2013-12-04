@@ -43,5 +43,22 @@ public class ResponseParser {
 
     }
 
+    public Object untyped() {
+        ObjectReader reader = mapper.reader();
+        reader.withType()
+        try {
+
+            return reader.readValue(response.getEntity().getContent());
+
+        } catch (JsonProcessingException jpex) {
+            throw new ClientException("Malformed response", jpex);
+        } catch (IOException ioex) {
+            throw new ClientException("Response cant be processed", ioex);
+        } catch (IllegalStateException isex) {
+            throw new ClientException("Response cant be processed", isex);
+        }
+
+    }
+
 }
 
