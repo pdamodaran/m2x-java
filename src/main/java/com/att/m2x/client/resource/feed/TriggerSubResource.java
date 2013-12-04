@@ -15,7 +15,9 @@ public class TriggerSubResource extends BasicOperation<Trigger, TriggerListRespo
         super(path, client, mapper);
     }
 
-    //TODO: PK,03/12:
+    public void test(String id) {
+        execute(prepare().get(id + "/test")).status(204);
+    }
 
 }
 
