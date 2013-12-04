@@ -101,7 +101,7 @@ public class RequestBuilder {
         while (it.hasNext()) {
             String name = it.next();
             if (!it.hasNext()) {
-                throw new ClientException("Malformed params list");
+                throw new ClientException("Malformed params list, missed value");
             }
             if (buffer.length() > 0) {
                 buffer.append("&");

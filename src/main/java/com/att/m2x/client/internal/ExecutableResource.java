@@ -7,6 +7,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 
 import com.att.m2x.client.exception.ClientException;
+import com.att.m2x.client.exception.NotFoundException;
 
 
 public class ExecutableResource extends EmptyResource {
@@ -26,13 +27,15 @@ public class ExecutableResource extends EmptyResource {
 
         } catch (IOException ioex) {
 
-            throw new ClientException("Problem with connection", ioex);
+            throw new ClientException("Connection or protocol error", ioex);
 
         }
     }
 
     private void handleCommonStatusCode(HttpResponse response) {
-        //TODO: PK,02/12: add
+
+        // TODO: PK,02/12: add
+
     }
 
     protected RequestBuilder prepare() {

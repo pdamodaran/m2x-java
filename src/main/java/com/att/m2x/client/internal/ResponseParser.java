@@ -22,7 +22,7 @@ public class ResponseParser {
 
     public ResponseParser status(int status) {
         if (response.getStatusLine().getStatusCode() != status) {
-            throw new ClientException("Wrong status");
+            throw new ClientException("Wrong status, expected:" + status + ", was:" + response.getStatusLine().getStatusCode());
         }
         return this;
     }
@@ -34,7 +34,7 @@ public class ResponseParser {
             return reader.readValue(response.getEntity().getContent());
 
         } catch (JsonProcessingException jpex) {
-            throw new ClientException("Mailformed response", jpex);
+            throw new ClientException("Malformed response", jpex);
         } catch (IOException ioex) {
             throw new ClientException("Response cant be processed", ioex);
         } catch (IllegalStateException isex) {

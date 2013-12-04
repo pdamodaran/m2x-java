@@ -24,7 +24,7 @@ public class EmptyResource {
                     .getConstructor(String.class, HttpClient.class, ObjectMapper.class)
                     .newInstance(this.path + "/" +path, client, mapper);
         } catch (Exception ex) {
-            throw new ClientException("InternalError");
+            throw new ClientException("Not valid resource");
         }
     }
 

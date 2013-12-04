@@ -4,12 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.HttpClient;
 
 import com.att.m2x.client.api.trigger.Trigger;
-import com.att.m2x.client.api.trigger.TriggerListRespond;
+import com.att.m2x.client.api.trigger.TriggerListResponse;
 import com.att.m2x.client.api.trigger.TriggerUpdateBuilder;
 import com.att.m2x.client.internal.BasicOperation;
 
 
-public class TriggerSubResource extends BasicOperation<Trigger, TriggerListRespond, TriggerUpdateBuilder> {
+public class TriggerSubResource extends BasicOperation<Trigger, TriggerListResponse, TriggerUpdateBuilder> {
 
     public TriggerSubResource(String path, HttpClient client, ObjectMapper mapper) {
         super(path, client, mapper);
