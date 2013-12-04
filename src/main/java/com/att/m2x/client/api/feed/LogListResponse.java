@@ -11,9 +11,5 @@ public class LogListResponse {
         return requests;
     }
 
-    public void setRequests(List<LogEntry> requests) {
-        this.requests = requests;
-    }
-
 }
 

@@ -9,9 +9,5 @@ public class DataSource extends CommonDataSource {
         return batch;
     }
 
-    public void setBatch(String batch) {
-        this.batch = batch;
-    }
-
 }
 

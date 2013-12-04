@@ -11,9 +11,5 @@ public class KeyListResponse {
         return keys;
     }
 
-    public void setKeys(List<Key> keys) {
-        this.keys = keys;
-    }
-
 }
 

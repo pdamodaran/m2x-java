@@ -11,9 +11,5 @@ public class StreamListResponse {
         return streams;
     }
 
-    public void setStreams(List<Stream> streams) {
-        this.streams = streams;
-    }
-
 }
 

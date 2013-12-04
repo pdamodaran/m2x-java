@@ -48,6 +48,7 @@ public class M2XClient {
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        //TODO: PK,04/12: add PropertyNamingStrategy to translate camelCase to '_'
 
         root = new EmptyResource(url, client, mapper);
     }

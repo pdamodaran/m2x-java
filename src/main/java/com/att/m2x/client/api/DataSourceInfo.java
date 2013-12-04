@@ -1,4 +1,4 @@
-package com.att.m2x.client.api.datasource;
+package com.att.m2x.client.api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

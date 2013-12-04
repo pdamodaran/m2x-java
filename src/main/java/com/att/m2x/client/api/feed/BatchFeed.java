@@ -2,7 +2,7 @@ package com.att.m2x.client.api.feed;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.att.m2x.client.api.datasource.DataSourceInfo;
+import com.att.m2x.client.api.DataSourceInfo;
 
 
 public class BatchFeed extends CommonFeed {
@@ -11,10 +11,6 @@ public class BatchFeed extends CommonFeed {
 
     public DataSourceInfo getDataSources() {
         return dataSources;
-    }
-
-    public void setDataSources(DataSourceInfo dataSources) {
-        this.dataSources = dataSources;
     }
 
 }
