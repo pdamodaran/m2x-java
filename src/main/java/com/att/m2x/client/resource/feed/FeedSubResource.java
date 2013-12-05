@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.HttpClient;
 
 import com.att.m2x.client.api.feed.Location;
-import com.att.m2x.client.api.feed.LogListResponse;
+import com.att.m2x.client.api.feed.LogEntry;
 import com.att.m2x.client.api.stream.Value;
 import com.att.m2x.client.internal.resource.ExecutableResource;
 
@@ -31,8 +31,8 @@ public class FeedSubResource extends ExecutableResource {
         return execute(prepare().get("location")).status(200).as(Location.class);
     }
 
-    public LogListResponse log() {
-        return execute(prepare().get("log")).status(200).as(LogListResponse.class);
+    public List<LogEntry> log() {
+        return execute(prepare().get("log")).status(200).list(LogEntry.class);
     }
 
     public void addValues(Map<String, List<Value>> items) {

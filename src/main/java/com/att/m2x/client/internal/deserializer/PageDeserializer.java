@@ -18,6 +18,7 @@ import com.att.m2x.client.api.Page;
 import com.att.m2x.client.api.datasource.Batch;
 import com.att.m2x.client.api.datasource.Blueprint;
 import com.att.m2x.client.api.datasource.DataSource;
+import com.att.m2x.client.api.feed.Feed;
 
 
 public class PageDeserializer extends JsonDeserializer<Page> {
@@ -27,6 +28,7 @@ public class PageDeserializer extends JsonDeserializer<Page> {
         FIELD_TO_CLASS.put("blueprints", Blueprint.class);
         FIELD_TO_CLASS.put("batches", Batch.class);
         FIELD_TO_CLASS.put("datasources", DataSource.class);
+        FIELD_TO_CLASS.put("feeds", Feed.class);
     }
 
     @Override

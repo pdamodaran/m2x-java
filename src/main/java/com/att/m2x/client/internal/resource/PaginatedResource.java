@@ -18,7 +18,7 @@ public class PaginatedResource<E> extends BasicOperation<E> {
         return execute(prepare().get()).status(200).page(E_TYPE);
     }
 
-    public Page<E> list(ParamBuilder pb) {
+    public Page<E> list(PaginationParamBuilder pb) {
         return execute(prepare().get().params(pb)).status(200).page(E_TYPE);
     }
 

@@ -18,7 +18,7 @@ import com.att.m2x.client.api.stream.Stream;
         @Type(value = BlueprintFeed.class, name="blueprint"),
         @Type(value = DataSourceFeed.class, name="datasource")
 })
-public abstract class CommonFeed {
+public abstract class Feed {
 
     protected String id;
     protected String name;

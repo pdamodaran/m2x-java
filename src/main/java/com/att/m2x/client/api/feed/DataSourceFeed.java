@@ -1,7 +1,7 @@
 package com.att.m2x.client.api.feed;
 
 
-public class DataSourceFeed extends CommonFeed {
+public class DataSourceFeed extends Feed {
 
     private String batch;
 

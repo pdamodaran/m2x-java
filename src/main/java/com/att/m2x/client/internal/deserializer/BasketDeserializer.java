@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 
+import com.att.m2x.client.api.feed.LogEntry;
 import com.att.m2x.client.api.key.Key;
 import com.att.m2x.client.api.stream.Stream;
 import com.att.m2x.client.api.trigger.Trigger;
@@ -26,6 +27,7 @@ public class BasketDeserializer extends JsonDeserializer<Basket> {
         FIELD_TO_CLASS.put("keys", Key.class);
         FIELD_TO_CLASS.put("streams", Stream.class);
         FIELD_TO_CLASS.put("triggers", Trigger.class);
+        FIELD_TO_CLASS.put("requests", LogEntry.class);
     }
 
 
