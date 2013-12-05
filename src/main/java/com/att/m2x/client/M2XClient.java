@@ -10,7 +10,7 @@ import org.apache.http.client.config.RequestConfig;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHeader;
 
-import com.att.m2x.client.internal.EmptyResource;
+import com.att.m2x.client.internal.resource.EmptyResource;
 import com.att.m2x.client.resource.BatchResource;
 import com.att.m2x.client.resource.BlueprintResource;
 import com.att.m2x.client.resource.DataSourceResource;

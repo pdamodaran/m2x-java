@@ -1,4 +1,5 @@
 package com.att.m2x.client.resource.feed;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,7 @@ import org.apache.http.client.HttpClient;
 import com.att.m2x.client.api.feed.Location;
 import com.att.m2x.client.api.feed.LogListResponse;
 import com.att.m2x.client.api.stream.Value;
-import com.att.m2x.client.internal.ExecutableResource;
+import com.att.m2x.client.internal.resource.ExecutableResource;
 
 
 public class FeedSubResource extends ExecutableResource {

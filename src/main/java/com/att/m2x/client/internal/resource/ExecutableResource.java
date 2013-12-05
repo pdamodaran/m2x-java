@@ -1,4 +1,4 @@
-package com.att.m2x.client.internal;
+package com.att.m2x.client.internal.resource;
 
 import java.io.IOException;
 
@@ -11,6 +11,8 @@ import com.att.m2x.client.exception.ClientException;
 import com.att.m2x.client.exception.ForbiddenException;
 import com.att.m2x.client.exception.NotFoundException;
 import com.att.m2x.client.exception.UnprocessableEntityException;
+import com.att.m2x.client.internal.RequestBuilder;
+import com.att.m2x.client.internal.ResponseParser;
 
 
 public class ExecutableResource extends EmptyResource {

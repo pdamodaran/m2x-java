@@ -4,12 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.HttpClient;
 
 import com.att.m2x.client.api.datasource.DataSource;
-import com.att.m2x.client.api.datasource.DataSourceListResponse;
-import com.att.m2x.client.api.datasource.DataSourceUpdateBuilder;
-import com.att.m2x.client.internal.BasicOperation;
+import com.att.m2x.client.internal.resource.PaginatedResource;
 
 
-public class DataSourceResource extends BasicOperation<DataSource, DataSourceListResponse, DataSourceUpdateBuilder> {
+public class DataSourceResource extends PaginatedResource<DataSource> {
 
     public DataSourceResource(String baseUrl, HttpClient client, ObjectMapper mapper) {
         super(baseUrl, client, mapper);

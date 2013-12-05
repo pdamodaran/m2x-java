@@ -1,4 +1,4 @@
-package com.att.m2x.client.internal;
+package com.att.m2x.client.internal.resource;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.HttpClient;

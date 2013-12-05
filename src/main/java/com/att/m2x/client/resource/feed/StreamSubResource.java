@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.HttpClient;
 
 import com.att.m2x.client.api.stream.*;
-import com.att.m2x.client.internal.ExecutableResource;
+import com.att.m2x.client.internal.resource.ExecutableResource;
 import com.att.m2x.client.internal.RequestBuilder;
 
 

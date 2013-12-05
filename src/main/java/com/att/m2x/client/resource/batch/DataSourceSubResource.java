@@ -6,9 +6,9 @@ import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.HttpClient;
 
+import com.att.m2x.client.api.Page;
 import com.att.m2x.client.api.datasource.DataSource;
-import com.att.m2x.client.api.datasource.DataSourceListResponse;
-import com.att.m2x.client.internal.ExecutableResource;
+import com.att.m2x.client.internal.resource.ExecutableResource;
 
 
 public class DataSourceSubResource extends ExecutableResource {
@@ -17,11 +17,11 @@ public class DataSourceSubResource extends ExecutableResource {
         super(path, client, mapper);
     }
 
-    public DataSourceListResponse dataSources() {
-        return execute(prepare().get()).status(200).as(DataSourceListResponse.class);
+    public Page<DataSource> dataSources() {
+        return execute(prepare().get()).status(200).page(DataSource.class);
     }
 
-    public DataSource addDataSource(String serial) {
+    public DataSource addSerial(String serial) {
         Map<String, Object> data = new HashMap<String, Object>();
         data.put("serial", serial);
 

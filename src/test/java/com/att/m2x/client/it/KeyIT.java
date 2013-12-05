@@ -10,12 +10,12 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 
 import com.att.m2x.client.api.Permission;
 import com.att.m2x.client.api.key.Key;
-import com.att.m2x.client.api.key.KeyListResponse;
 import com.att.m2x.client.util.BaseResourceIT;
 
 
@@ -23,9 +23,9 @@ public class KeyIT extends BaseResourceIT {
 
     @Test
     public void loadShouldReturnAtLeastOneKey() {
-        KeyListResponse response = client.keys().list();
+        List<Key> keys = client.keys().list();
 
-        assertThat(response.getKeys().size(), is(greaterThan(0)));
+        assertThat(keys.size(), is(greaterThan(0)));
     }
 
     @Test

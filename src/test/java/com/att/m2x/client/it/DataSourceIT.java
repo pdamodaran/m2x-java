@@ -9,6 +9,7 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
+import com.att.m2x.client.api.Page;
 import com.att.m2x.client.api.Status;
 import com.att.m2x.client.api.Visibility;
 import com.att.m2x.client.api.datasource.Batch;
@@ -68,6 +69,17 @@ public class DataSourceIT extends BaseResourceIT {
         assertThat(blueprint.getName(), is(name));
         assertThat(blueprint.getVisibility(), is(Visibility.PRIVATE));
         assertThat(blueprint.getTags(), hasItems("TagA", "TagB"));
+    }
+
+    @Test
+    public void verifyPagination() {
+        Page<Blueprint> blueprints = client.blueprints().list(1, 1);
+
+        assertThat(blueprints, is(notNullValue()));
+        assertThat(blueprints.getData().size(), greaterThan(0));
+        assertThat(blueprints.getLimit(), is(1));
+        assertThat(blueprints.getCurrentPage(), is(1));
+        assertThat(blueprints.getTotal(), greaterThan(0));
     }
 
 }

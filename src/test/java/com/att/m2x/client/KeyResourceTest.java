@@ -9,12 +9,14 @@ import static com.github.tomakehurst.wiremock.client.WireMock.put;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
+import java.util.List;
 import java.util.UUID;
 
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
@@ -44,9 +46,10 @@ public class KeyResourceTest extends BaseMockTest {
                 .willReturn(aResponse().withStatus(200)
                         .withBody(prop("key.list.masterKeys"))));
 
-        KeyListResponse response = client.keys().list();
+        List<Key> keys = client.keys().list();
 
-        assertThat(response.getKeys(), is(not(empty())));
+        assertThat(keys, is(not(empty())));
+        assertThat(keys.size(), greaterThan(0));
     }
 
     @Test
@@ -55,9 +58,10 @@ public class KeyResourceTest extends BaseMockTest {
                 .willReturn(aResponse().withStatus(200)
                         .withBody(prop("key.list.feedKeys"))));
 
-        KeyListResponse response = client.keys().list(ENTITY_ID);
+        List<Key> keys = client.keys().list(ENTITY_ID);
 
-        assertThat(response.getKeys(), is(not(empty())));
+        assertThat(keys, is(not(empty())));
+        assertThat(keys.size(), greaterThan(0));
     }
 
     @Test

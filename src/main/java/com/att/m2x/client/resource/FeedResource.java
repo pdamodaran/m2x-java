@@ -5,7 +5,7 @@ import org.apache.http.client.HttpClient;
 
 import com.att.m2x.client.api.feed.CommonFeed;
 import com.att.m2x.client.api.feed.FeedListResponse;
-import com.att.m2x.client.internal.ExecutableResource;
+import com.att.m2x.client.internal.resource.ExecutableResource;
 import com.att.m2x.client.resource.feed.FeedSubResource;
 
 
