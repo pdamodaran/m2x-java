@@ -82,5 +82,14 @@ public class DataSourceIT extends BaseResourceIT {
         assertThat(blueprints.getTotal(), greaterThan(0));
     }
 
+    @Test
+    public void canViewDataSourcesInBatch() {
+        Page<DataSource> dataSources = client.batches().batch(prop("batch.id")).dataSources();
+
+        assertThat(dataSources, is(notNullValue()));
+        assertThat(dataSources.getData().size(), greaterThan(0));
+        assertThat(dataSources.getData().get(0).getBatch(), is(prop("batch.id")));
+    }
+
 }
 

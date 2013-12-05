@@ -9,7 +9,9 @@ import org.junit.Test;
 
 import com.att.m2x.client.api.feed.BatchFeed;
 import com.att.m2x.client.api.feed.BlueprintFeed;
+import com.att.m2x.client.api.feed.CommonFeed;
 import com.att.m2x.client.api.feed.DataSourceFeed;
+import com.att.m2x.client.api.feed.Location;
 import com.att.m2x.client.util.BaseResourceIT;
 
 
@@ -40,6 +42,21 @@ public class FeedIT extends BaseResourceIT {
         //~
         assertThat(feed.getBatch(), is(notNullValue()));
     }
+
+    @Test
+    public void verifyLocationInFeed() {
+        CommonFeed feed = client.feeds().get(prop("feed.with-location.id"));
+
+        assertThat(feed.getLocation(), is(notNullValue()));
+
+        Location location = client.feeds().feed(prop("feed.with-location.id")).location();
+
+        assertThat(location, is(notNullValue()));
+        assertThat(feed.getLocation().getLatitude(), is(location.getLatitude()));
+        assertThat(feed.getLocation().getLongitude(), is(location.getLongitude()));
+        assertThat(feed.getLocation().getName(), is(location.getName()));
+    }
+
 
 
 }
