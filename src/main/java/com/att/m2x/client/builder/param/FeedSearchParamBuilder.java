@@ -1,4 +1,4 @@
-package com.att.m2x.client.builder;
+package com.att.m2x.client.builder.param;
 
 import com.att.m2x.client.api.DistanceUnit;
 import com.att.m2x.client.api.FeedType;
@@ -29,3 +29,4 @@ public class FeedSearchParamBuilder extends ParamBuilder {
     }
 
 }
+

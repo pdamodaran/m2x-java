@@ -108,3 +108,4 @@ public class FeedIT extends BaseResourceIT {
     }
 
 }
+

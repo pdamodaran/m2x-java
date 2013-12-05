@@ -1,10 +1,15 @@
 package com.att.m2x.client.builder;
 
+import java.util.Date;
+
 import com.att.m2x.client.api.DistanceUnit;
 import com.att.m2x.client.api.FeedType;
+import com.att.m2x.client.builder.param.FeedSearchParamBuilder;
+import com.att.m2x.client.builder.param.PaginationParamBuilder;
+import com.att.m2x.client.builder.param.StreamValueParamBuilder;
 
 
-public class QueryBuilders {
+public final class QueryBuilders {
 
     public static PaginationParamBuilder page(int page) {
         return new PaginationParamBuilder().page(page);
@@ -30,4 +35,13 @@ public class QueryBuilders {
         return new FeedSearchParamBuilder().within(distance, unit);
     }
 
+    public static StreamValueParamBuilder start(Date date) {
+        return new StreamValueParamBuilder().start(date);
+    }
+
+    public static StreamValueParamBuilder end(Date date) {
+        return new StreamValueParamBuilder().end(date);
+    }
+
 }
+

@@ -1,12 +1,11 @@
 package com.att.m2x.client.internal.resource;
 
 import java.lang.reflect.ParameterizedType;
-import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.HttpClient;
 
-import com.att.m2x.client.internal.UpdateBuilder;
+import com.att.m2x.client.builder.model.UpdateBuilder;
 
 
 public class BasicOperation<E> extends ExecutableResource {
@@ -18,18 +17,12 @@ public class BasicOperation<E> extends ExecutableResource {
         super(path, client, mapper);
 
         ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
-        this.E_TYPE= (Class<E>) genericSuperclass.getActualTypeArguments()[0];
+        this.E_TYPE = (Class<E>) genericSuperclass.getActualTypeArguments()[0];
     }
 
     public E get(String id) {
         return execute(prepare().get(id)).status(200).as(E_TYPE);
     }
-
-
-
-    /*public List<E> list() {
-        return execute(prepare().get()).status(200).listOf(E_TYPE);
-    } */
 
     public E create(UpdateBuilder data) {
         return execute(prepare().post().body(data)).status(201).as(E_TYPE);

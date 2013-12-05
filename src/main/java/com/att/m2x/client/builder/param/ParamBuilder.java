@@ -1,4 +1,4 @@
-package com.att.m2x.client.builder;
+package com.att.m2x.client.builder.param;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,3 +21,4 @@ public abstract class ParamBuilder {
     }
 
 }
+

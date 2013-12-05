@@ -1,4 +1,4 @@
-package com.att.m2x.client.builder;
+package com.att.m2x.client.builder.param;
 
 
 public class PaginationParamBuilder extends ParamBuilder {
@@ -14,3 +14,4 @@ public class PaginationParamBuilder extends ParamBuilder {
     }
 
 }
+

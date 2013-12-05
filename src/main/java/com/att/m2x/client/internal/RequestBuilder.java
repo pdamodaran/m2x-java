@@ -1,7 +1,6 @@
 package com.att.m2x.client.internal;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -19,7 +18,8 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 
-import com.att.m2x.client.builder.ParamBuilder;
+import com.att.m2x.client.builder.model.UpdateBuilder;
+import com.att.m2x.client.builder.param.ParamBuilder;
 import com.att.m2x.client.exception.ClientException;
 
 

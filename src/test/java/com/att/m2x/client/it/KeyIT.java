@@ -1,6 +1,5 @@
 package com.att.m2x.client.it;
 
-import static com.att.m2x.client.api.key.KeyUpdateBuilder.builder;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.is;
@@ -16,6 +15,8 @@ import org.junit.Test;
 
 import com.att.m2x.client.api.Permission;
 import com.att.m2x.client.api.key.Key;
+import com.att.m2x.client.builder.ModelBuilders;
+import com.att.m2x.client.exception.NotFoundException;
 import com.att.m2x.client.util.BaseResourceIT;
 
 
@@ -31,7 +32,7 @@ public class KeyIT extends BaseResourceIT {
     @Test
     public void validateKeyCreation() {
         Key key = client.keys().create(
-                builder().name(name).permissions(Permission.GET, Permission.POST)
+                ModelBuilders.newKey().name(name).permissions(Permission.GET, Permission.POST)
         );
 
         assertThat(key, is(notNullValue()));
@@ -44,7 +45,7 @@ public class KeyIT extends BaseResourceIT {
         Date expiration = (new Date(new Date().getTime() + 60 * 1000));
 
         Key key = client.keys().create(
-                builder().name(name).permissions(Permission.GET)
+                ModelBuilders.newKey().name(name).permissions(Permission.GET)
                 .expiresAt(expiration)
         );
 
@@ -54,7 +55,7 @@ public class KeyIT extends BaseResourceIT {
     @Test
     public void regenerateShouldChangeKeyIdentity() {
         Key key = client.keys().create(
-                builder().name(name).permissions(Permission.GET, Permission.POST)
+                ModelBuilders.newKey().name(name).permissions(Permission.GET, Permission.POST)
         );
         assertThat(key, is(notNullValue()));
 
@@ -65,11 +66,10 @@ public class KeyIT extends BaseResourceIT {
         assertThat(regenerated.getKey(), is(not(key.getKey())));
     }
 
-    //TODO: PK,04/12: @Test(expected = NotFoundException.class)
-    @Test
+    @Test(expected = NotFoundException.class)
     public void validateDelete() {
         Key key = client.keys().create(
-                builder().name(name).permissions(Permission.GET, Permission.POST)
+                ModelBuilders.newKey().name(name).permissions(Permission.GET, Permission.POST)
         );
         assertThat(key, is(notNullValue()));
 
@@ -79,7 +79,7 @@ public class KeyIT extends BaseResourceIT {
             fail();
         }
 
-        //client.keys().get(key.getKey());
+        client.keys().get(key.getKey());
     }
 
 }

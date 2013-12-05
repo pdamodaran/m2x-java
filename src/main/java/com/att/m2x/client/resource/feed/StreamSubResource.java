@@ -1,15 +1,21 @@
 package com.att.m2x.client.resource.feed;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.HttpClient;
 
-import com.att.m2x.client.api.stream.*;
+import com.att.m2x.client.api.stream.Stream;
+import com.att.m2x.client.api.stream.Unit;
+import com.att.m2x.client.api.stream.Value;
+import com.att.m2x.client.api.stream.ValueListResponse;
+import com.att.m2x.client.builder.param.StreamValueParamBuilder;
 import com.att.m2x.client.internal.resource.ExecutableResource;
-import com.att.m2x.client.internal.RequestBuilder;
 
 
 public class StreamSubResource extends ExecutableResource {
@@ -18,8 +24,8 @@ public class StreamSubResource extends ExecutableResource {
         super(path, client, mapper);
     }
 
-    public StreamListResponse list() {
-        return execute(prepare().get()).status(200).as(StreamListResponse.class);
+    public List<Stream> list() {
+        return execute(prepare().get()).status(200).list(Stream.class);
     }
 
     public Stream create(String name, Unit unit) {
@@ -40,20 +46,8 @@ public class StreamSubResource extends ExecutableResource {
         return execute(prepare().get(name + "/values")).status(200).as(ValueListResponse.class);
     }
 
-    //TODO: PK,04/12: replace with builder?
-    public ValueListResponse values(String name, Date start, Date end, Integer limit) {
-        RequestBuilder request = prepare().get(name + "/values");
-        if (start != null) {
-            request.params("start", toStr(start));
-        }
-        if (end != null) {
-            request.params("start", toStr(end));
-        }
-        if (limit != null) {
-            request.params("limit", limit.toString());
-        }
-
-        return execute(request).status(200).as(ValueListResponse.class);
+    public ValueListResponse values(String name, StreamValueParamBuilder... pbs) {
+        return execute(prepare().get(name + "/values").params(pbs)).status(200).as(ValueListResponse.class);
     }
 
     public void addValues(String name, Value... items) {
@@ -78,12 +72,6 @@ public class StreamSubResource extends ExecutableResource {
         Map<String, Object> data = new HashMap<String, Object>(1);
         data.put("unit", unit);
         return data;
-    }
-
-    private static String toStr(Date date) {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZZ");
-        df.setTimeZone(TimeZone.getTimeZone("UTC"));
-        return df.format(date);
     }
 
 }

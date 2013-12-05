@@ -25,8 +25,8 @@ import org.junit.Test;
 
 import com.att.m2x.client.api.Permission;
 import com.att.m2x.client.api.key.Key;
-import com.att.m2x.client.api.key.KeyListResponse;
-import com.att.m2x.client.api.key.KeyUpdateBuilder;
+import com.att.m2x.client.builder.ModelBuilders;
+import com.att.m2x.client.builder.model.KeyBuilder;
 import com.att.m2x.client.exception.ForbiddenException;
 import com.att.m2x.client.exception.NotFoundException;
 import com.att.m2x.client.exception.UnprocessableEntityException;
@@ -72,9 +72,7 @@ public class KeyResourceTest extends BaseMockTest {
                 .willReturn(aResponse().withStatus(201)
                         .withBody(prop("key.create.masterKey"))));
 
-        Key response = client.keys().create(KeyUpdateBuilder.builder()
-                .name("Test Master Key")
-                .permissions(Permission.GET));
+        Key response = client.keys().create(ModelBuilders.newKey().name("Test Master Key").permissions(Permission.GET));
 
         assertThat(response, is(notNullValue()));
     }
@@ -137,7 +135,7 @@ public class KeyResourceTest extends BaseMockTest {
                 .willReturn(aResponse().withStatus(422)
                         .withBody(prop("key.update.keyException422"))));
 
-        client.keys().update(ENTITY_ID, KeyUpdateBuilder.builder().name(null));
+        client.keys().update(ENTITY_ID, ModelBuilders.newKey().name(null));
     }
 
     @Override

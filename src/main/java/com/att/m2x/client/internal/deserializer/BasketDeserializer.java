@@ -58,5 +58,5 @@ public class BasketDeserializer extends JsonDeserializer<Basket> {
         return new Basket(Collections.emptyList());
     }
 
-
 }
+

@@ -15,3 +15,4 @@ public abstract class BaseMockTest extends TestWithSamples {
     }
 
 }
+

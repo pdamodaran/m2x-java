@@ -13,4 +13,11 @@
   <entry key="feed.blueprint.id"></entry>
   <entry key="feed.batch.id"></entry>
   <entry key="feed.datasource.id"></entry>
+  <entry key="feed.with-location.id"></entry>
+
+  <entry key="key.master-staging"></entry>
+  <entry key="feed.id"></entry>
+  <entry key="stream.id"></entry>
+  <entry key="trigger.id"></entry>
+
 </properties>

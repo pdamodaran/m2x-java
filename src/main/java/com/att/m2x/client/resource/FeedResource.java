@@ -5,7 +5,7 @@ import org.apache.http.client.HttpClient;
 
 import com.att.m2x.client.api.Page;
 import com.att.m2x.client.api.feed.Feed;
-import com.att.m2x.client.builder.ParamBuilder;
+import com.att.m2x.client.builder.param.ParamBuilder;
 import com.att.m2x.client.internal.resource.ExecutableResource;
 import com.att.m2x.client.resource.feed.FeedSubResource;
 

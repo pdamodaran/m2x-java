@@ -1,6 +1,5 @@
 package com.att.m2x.client.it;
 
-import static com.att.m2x.client.api.datasource.DataSourceUpdateBuilder.builder;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.is;
@@ -15,6 +14,7 @@ import com.att.m2x.client.api.Visibility;
 import com.att.m2x.client.api.datasource.Batch;
 import com.att.m2x.client.api.datasource.Blueprint;
 import com.att.m2x.client.api.datasource.DataSource;
+import com.att.m2x.client.builder.ModelBuilders;
 import com.att.m2x.client.builder.QueryBuilders;
 import com.att.m2x.client.util.BaseResourceIT;
 
@@ -62,7 +62,7 @@ public class DataSourceIT extends BaseResourceIT {
     @Test
     public void createBlueprintWithTags() {
         Blueprint blueprint = client.blueprints().create(
-                builder().name(name).visibility(Visibility.PRIVATE)
+                ModelBuilders.newDataSource().name(name).visibility(Visibility.PRIVATE)
                         .tags("TagA", "TagB")
         );
 

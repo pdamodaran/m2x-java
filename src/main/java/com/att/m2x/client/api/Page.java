@@ -39,4 +39,6 @@ public class Page<T> extends Basket<T> {
     public int getTotal() {
         return total;
     }
+
 }
+

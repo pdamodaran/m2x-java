@@ -4,8 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.HttpClient;
 
 import com.att.m2x.client.api.Page;
-import com.att.m2x.client.builder.PaginationParamBuilder;
-import com.att.m2x.client.builder.ParamBuilder;
+import com.att.m2x.client.builder.param.PaginationParamBuilder;
 
 
 public class PaginatedResource<E> extends BasicOperation<E> {
@@ -23,3 +22,4 @@ public class PaginatedResource<E> extends BasicOperation<E> {
     }
 
 }
+
