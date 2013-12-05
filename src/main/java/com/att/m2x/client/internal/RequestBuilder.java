@@ -1,7 +1,10 @@
 package com.att.m2x.client.internal;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -16,6 +19,7 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 
+import com.att.m2x.client.builder.ParamBuilder;
 import com.att.m2x.client.exception.ClientException;
 
 
@@ -30,7 +34,7 @@ public class RequestBuilder {
     private HttpMethod method;
     private String baseUrl;
     private String subUrl = "";
-    private String param = "";
+    private List<String> params = new ArrayList<String>();
     private String body = "";
 
 
@@ -95,32 +99,38 @@ public class RequestBuilder {
     }
 
     public RequestBuilder params(String... params) {
-        Iterator<String> it = Arrays.asList(params).iterator();
-
-        StringBuffer buffer = new StringBuffer();
-        while (it.hasNext()) {
-            String name = it.next();
-            if (!it.hasNext()) {
-                throw new ClientException("Malformed params list, missed value");
-            }
-            if (buffer.length() > 0) {
-                buffer.append("&");
-            }
-            buffer.append(name + "=" + it.next());
+        if (params.length % 2 != 0) {
+            throw new ClientException("Malformed params list, missed value");
         }
-        this.param = buffer.toString();
-
+        Collections.addAll(this.params, params);
         return this;
     }
 
+    public RequestBuilder params(ParamBuilder... builders) {
+        for (ParamBuilder builder : builders) {
+            this.params.addAll(builder.apply());
+        }
+        return this;
+    }
+
+    private String buildParams() {
+        StringBuilder builder = new StringBuilder();
+        Iterator<String> it = params.iterator();
+        while (it.hasNext()) {
+            builder.append(builder.length() > 0 ? "&" : "?")
+                    .append(it.next()).append("=").append(it.next());
+        }
+
+        return builder.toString();
+    }
 
     public HttpUriRequest build() {
         StringBuilder buffer = new StringBuilder(baseUrl);
         if (!subUrl.isEmpty()) {
             buffer.append("/").append(subUrl);
         }
-        if (!param.isEmpty()) {
-            buffer.append("?").append(param);
+        if (!params.isEmpty()) {
+            buffer.append(buildParams());
         }
         String url = buffer.toString();
 
