@@ -16,6 +16,7 @@ import com.att.m2x.client.resource.BlueprintResource;
 import com.att.m2x.client.resource.DataSourceResource;
 import com.att.m2x.client.resource.FeedResource;
 import com.att.m2x.client.resource.KeyResource;
+import com.att.m2x.client.resource.feed.FeedSubResource;
 
 
 public class M2XClient {
@@ -28,9 +29,9 @@ public class M2XClient {
         this(key, "http://api-m2x.att.com/v1");
     }
 
-    public M2XClient(String key, String url) {
-        assert key != null;
-        assert url != null;
+    public M2XClient(String apiKey, String apiEndpoint) {
+        assert apiKey != null;
+        assert apiEndpoint != null;
 
         RequestConfig config = RequestConfig.custom()
                 //TODO: PK,29/11:builder
@@ -38,19 +39,19 @@ public class M2XClient {
                 .setSocketTimeout(10000)
                 .build();
 
-        Header userAgent = new BasicHeader("User-Agent", "M2X/Java client 0.1");
-        Header apiKey = new BasicHeader("X-M2X-KEY", key);
+        Header userAgentHeader = new BasicHeader("User-Agent", "M2X/Java client 0.1");
+        Header apiKeyHeader = new BasicHeader("X-M2X-KEY", apiKey);
 
         HttpClient client = HttpClientBuilder.create()
                 .setDefaultRequestConfig(config)
-                .setDefaultHeaders(Arrays.asList(userAgent, apiKey))
+                .setDefaultHeaders(Arrays.asList(userAgentHeader, apiKeyHeader))
                 .build();
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         //TODO: PK,04/12: add PropertyNamingStrategy to translate camelCase to '_'
 
-        root = new EmptyResource(url, client, mapper);
+        root = new EmptyResource(apiEndpoint, client, mapper);
     }
 
 
@@ -72,6 +73,10 @@ public class M2XClient {
 
     public FeedResource feeds() {
         return root.drill("feeds", FeedResource.class);
+    }
+
+    public FeedSubResource feed(String id) {
+        return root.drill("feeds/" + id, FeedSubResource.class);
     }
 
 }

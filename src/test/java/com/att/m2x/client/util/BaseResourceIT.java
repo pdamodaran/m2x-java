@@ -14,7 +14,7 @@ public class BaseResourceIT extends TestWithSamples {
 
     @Before
     public void setUp() {
-        client = new M2XClient(prop("key.master"));
+        client = new M2XClient(prop("key.master"), "http://api-m2x.att.citrusbyte.com/v1");
         name = generate();
     }
 

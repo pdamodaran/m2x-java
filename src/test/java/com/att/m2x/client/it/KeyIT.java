@@ -32,7 +32,7 @@ public class KeyIT extends BaseResourceIT {
     @Test
     public void validateKeyCreation() {
         Key key = client.keys().create(
-                ModelBuilders.newKey().name(name).permissions(Permission.GET, Permission.POST)
+                ModelBuilders.key().name(name).permissions(Permission.GET, Permission.POST)
         );
 
         assertThat(key, is(notNullValue()));
@@ -45,7 +45,7 @@ public class KeyIT extends BaseResourceIT {
         Date expiration = (new Date(new Date().getTime() + 60 * 1000));
 
         Key key = client.keys().create(
-                ModelBuilders.newKey().name(name).permissions(Permission.GET)
+                ModelBuilders.key().name(name).permissions(Permission.GET)
                 .expiresAt(expiration)
         );
 
@@ -55,7 +55,7 @@ public class KeyIT extends BaseResourceIT {
     @Test
     public void regenerateShouldChangeKeyIdentity() {
         Key key = client.keys().create(
-                ModelBuilders.newKey().name(name).permissions(Permission.GET, Permission.POST)
+                ModelBuilders.key().name(name).permissions(Permission.GET, Permission.POST)
         );
         assertThat(key, is(notNullValue()));
 
@@ -69,7 +69,7 @@ public class KeyIT extends BaseResourceIT {
     @Test(expected = NotFoundException.class)
     public void validateDelete() {
         Key key = client.keys().create(
-                ModelBuilders.newKey().name(name).permissions(Permission.GET, Permission.POST)
+                ModelBuilders.key().name(name).permissions(Permission.GET, Permission.POST)
         );
         assertThat(key, is(notNullValue()));
 

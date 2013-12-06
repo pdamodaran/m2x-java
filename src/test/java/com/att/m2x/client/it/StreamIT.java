@@ -15,18 +15,13 @@ import org.junit.Test;
 import com.att.m2x.client.M2XClient;
 import com.att.m2x.client.api.stream.Stream;
 import com.att.m2x.client.api.stream.Unit;
+import com.att.m2x.client.api.stream.Value;
 import com.att.m2x.client.api.stream.ValueListResponse;
 import com.att.m2x.client.builder.QueryBuilders;
 import com.att.m2x.client.util.BaseResourceIT;
 
 
 public class StreamIT extends BaseResourceIT {
-
-    @Before
-    public void setUp() {
-        client = new M2XClient(prop("key.master-staging"), "http://api-m2x.att.citrusbyte.com/v1");
-        name = generate();
-    }
 
     @Test
     public void shouldGetListOfStream() {
@@ -59,6 +54,11 @@ public class StreamIT extends BaseResourceIT {
         assertThat(response, is(notNullValue()));
         assertThat(response.getLimit(), is(1));
         assertThat(response.getValues(), is(empty()));
+    }
+
+    @Test
+    public void addValueToStream() {
+        client.feed(prop("feed.id")).streams().addValues(prop("stream.id"), new Value("1000"), new Value("1000"));
     }
 
 }

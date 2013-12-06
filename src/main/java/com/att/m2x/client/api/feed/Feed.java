@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.att.m2x.client.api.Status;
 import com.att.m2x.client.api.Visibility;
 import com.att.m2x.client.api.stream.Stream;
+import com.att.m2x.client.api.trigger.Trigger;
 
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
@@ -33,6 +34,7 @@ public abstract class Feed {
     protected Date updated;
     protected Location location;
     protected List<Stream> streams;
+    protected List<Trigger> triggers;
 
     public String getId() {
         return id;
@@ -84,6 +86,10 @@ public abstract class Feed {
 
     public List<Stream> getStreams() {
         return streams;
+    }
+
+    public List<Trigger> getTriggers() {
+        return triggers;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.att.m2x.client.internal.resource;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.HttpClient;
@@ -28,7 +29,15 @@ public class BasicOperation<E> extends ExecutableResource {
         return execute(prepare().post().body(data)).status(201).as(E_TYPE);
     }
 
+    public E create(Map<String, Object> data) {
+        return execute(prepare().post().body(data)).status(201).as(E_TYPE);
+    }
+
     public void update(String id, UpdateBuilder data) {
+        execute(prepare().put(id).body(data)).status(204);
+    }
+
+    public void update(String id, Map<String, Object> data) {
         execute(prepare().put(id).body(data)).status(204);
     }
 

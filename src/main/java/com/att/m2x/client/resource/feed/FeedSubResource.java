@@ -10,6 +10,7 @@ import org.apache.http.client.HttpClient;
 import com.att.m2x.client.api.feed.Location;
 import com.att.m2x.client.api.feed.LogEntry;
 import com.att.m2x.client.api.stream.Value;
+import com.att.m2x.client.builder.model.LocationBuilder;
 import com.att.m2x.client.internal.resource.ExecutableResource;
 
 
@@ -29,6 +30,14 @@ public class FeedSubResource extends ExecutableResource {
 
     public Location location() {
         return execute(prepare().get("location")).status(200).as(Location.class);
+    }
+
+    public void location(LocationBuilder data) {
+        execute(prepare().put("location").body(data)).status(204);
+    }
+
+    public void location(Map<String, Object> data) {
+        execute(prepare().put("location").body(data)).status(204);
     }
 
     public List<LogEntry> log() {

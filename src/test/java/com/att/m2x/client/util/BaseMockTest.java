@@ -11,7 +11,7 @@ public abstract class BaseMockTest extends TestWithSamples {
 
     @Before
     public void setUp() {
-        client = new M2XClient("API_KEY", "http://localhost:8080/");
+        client = new M2XClient("API_KEY", "http://localhost:8080");
     }
 
 }

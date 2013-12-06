@@ -8,10 +8,8 @@ import static org.junit.Assert.assertThat;
 
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import com.att.m2x.client.M2XClient;
 import com.att.m2x.client.api.trigger.Condition;
 import com.att.m2x.client.api.trigger.Trigger;
 import com.att.m2x.client.builder.ModelBuilders;
@@ -19,12 +17,6 @@ import com.att.m2x.client.util.BaseResourceIT;
 
 
 public class TriggerIT extends BaseResourceIT {
-
-    @Before
-    public void setUp() {
-        client = new M2XClient(prop("key.master-staging"), "http://api-m2x.att.citrusbyte.com/v1");
-        name = generate();
-    }
 
     @Test
     public void loadTrigger() {
@@ -44,7 +36,7 @@ public class TriggerIT extends BaseResourceIT {
     @Test
     public void createTrigger() {
         Trigger trigger = client.feeds().feed(prop("feed.id")).triggers().create(
-                ModelBuilders.newTrigger().stream(prop("stream.id")).name(name)
+                ModelBuilders.trigger().stream(prop("stream.id")).name(name)
                         .condition(Condition.EQUAL).value(String.valueOf(10))
                         .callback("http://example.com")
 

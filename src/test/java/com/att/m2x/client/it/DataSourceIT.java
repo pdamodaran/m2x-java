@@ -62,7 +62,7 @@ public class DataSourceIT extends BaseResourceIT {
     @Test
     public void createBlueprintWithTags() {
         Blueprint blueprint = client.blueprints().create(
-                ModelBuilders.newDataSource().name(name).visibility(Visibility.PRIVATE)
+                ModelBuilders.dataSource().name(name).visibility(Visibility.PRIVATE)
                         .tags("TagA", "TagB")
         );
 

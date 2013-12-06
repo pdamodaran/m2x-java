@@ -11,12 +11,22 @@ import com.att.m2x.client.builder.param.StreamValueParamBuilder;
 
 public final class QueryBuilders {
 
+    public static PaginationParamBuilder page() {
+        return new PaginationParamBuilder();
+    }
+
     public static PaginationParamBuilder page(int page) {
         return new PaginationParamBuilder().page(page);
     }
 
     public static PaginationParamBuilder limit(int limit) {
         return new PaginationParamBuilder().limit(limit);
+    }
+
+    //~
+
+    public static FeedSearchParamBuilder query() {
+        return new FeedSearchParamBuilder();
     }
 
     public static FeedSearchParamBuilder query(String query) {
@@ -33,6 +43,12 @@ public final class QueryBuilders {
 
     public static FeedSearchParamBuilder within(int distance, DistanceUnit unit) {
         return new FeedSearchParamBuilder().within(distance, unit);
+    }
+
+    //~
+
+    public static StreamValueParamBuilder stream() {
+        return new StreamValueParamBuilder();
     }
 
     public static StreamValueParamBuilder start(Date date) {
