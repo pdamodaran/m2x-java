@@ -62,7 +62,7 @@ Get an instance of `BlueprintResource` before starting to work with Blueprints:
 This is thread-safe objects, so they can be stored and reused.
  
  
-#### Fetch a collection of items:
+#### Fetch a collection of items ([Spec](https://m2x.att.com/developer/documentation/datasource#List-Blueprints)):
  
 ```
 	Page<Blueprint> blueprints = client.blueprints().list()
@@ -82,7 +82,7 @@ Use params builder to change how many objects are included in the page, or move 
 ```
 
 
-#### Single item retrieval
+#### Single item retrieval ([Spec](https://m2x.att.com/developer/documentation/datasource#View-Blueprint-Details))
  
 ```
 	Blueprint blueprint = client.blueprints().get("188a0afb3adc379706e780a4eafbd153");
@@ -91,7 +91,7 @@ Use params builder to change how many objects are included in the page, or move 
 The first parameter of get() is the Blueprint id `blueprint.getId();`
 
 
-#### Create new instance
+#### Create new instance ([Spec](https://m2x.att.com/developer/documentation/datasource#Create-Blueprint))
  
 Library provide builder to make this process funny:
  
@@ -117,7 +117,7 @@ Or use `Map<String, Object>` if builder is not ***TBD***
 In case of one of the required parameters are missing library will throw `UnprocessableEntityException`.
 
 
-#### Update item
+#### Update item  ([Spec](https://m2x.att.com/developer/documentation/datasource#Update-Blueprint-Details))
  
 Like in case of creating, use two ways to create objects, with builder or with date in map.
  
@@ -132,7 +132,7 @@ Like in case of creating, use two ways to create objects, with builder or with d
 ```
 
 
-#### Removal
+#### Removal ([Spec](https://m2x.att.com/developer/documentation/datasource#Delete-Blueprint))
  
 ```
     client.blueprints().delete(blueprint.getId());
@@ -171,7 +171,7 @@ Get `BatchResource` to start working with batches:
 This resource provides the same basic api to work with batches like `BlueprintResource`.
 
 
-#### List DataSources from a Batch
+#### List DataSources from a Batch ([Spec](https://m2x.att.com/developer/documentation/datasource#List-Data-Sources-from-a-Batch))
  
 To fetch all the datasources in given batch use the following snippet:
  
@@ -182,7 +182,7 @@ To fetch all the datasources in given batch use the following snippet:
 The first parameter of batch() is the Batch id.
 
 
-#### Add new DataSource to Batch
+#### Add new DataSource to Batch ([Spec](https://m2x.att.com/developer/documentation/datasource#Add-Data-Source-to-an-existing-Batch))
  
 ```
 	client.batches().batch("b1e8abbad65cb52b0d75eb2e63efa782").addSerial("ABC1234");
@@ -198,7 +198,7 @@ All operation for Keys is placed inside the `KeyResource`:
 ```
 
 
-### Fetch the collection of keys
+#### Fetch the collection of keys ([Spec](https://m2x.att.com/developer/documentation/keys#List-Keys))
  
 Return list of all registered keys:
  
@@ -213,7 +213,7 @@ Or return list of keys for a given Feed:
 ```
 
 
-#### Create new key
+#### Create new key ([Spec](https://m2x.att.com/developer/documentation/keys#Create-Key))
  
 Can be done with builder or map:
  
@@ -224,21 +224,21 @@ Can be done with builder or map:
 In case using of map please keep in mind that permissions should be placed inside either list or set.
 
 
-#### Update key
+#### Update key ([Spec](https://m2x.att.com/developer/documentation/keys#Update-Key))
  
 ```
     client.keys().update("b1e8abbad65cb52b0d75eb2e63efa782", key().name("Test Key").permission(Permission.GET));
 ```
 
 
-#### Delete key
+#### Delete key ([Spec](https://m2x.att.com/developer/documentation/keys#Delete-Key))
  
 ```
     client.keys().delete("b1e8abbad65cb52b0d75eb2e63efa782");
 ```
 
 
-#### Key regeneration
+#### Key regeneration ([Spec](https://m2x.att.com/developer/documentation/keys#Regenerate-Key))
  
 ```
 	Key key = client.keys().regenerate("b1e8abbad65cb52b0d75eb2e63efa782");
@@ -252,7 +252,7 @@ Feeds creation is done when creating a DataSource, Blueprint or Batch.
 So that is why `FeedResource` can't create or update or delete Feed.
 
 
-#### Fetch a list
+#### Fetch a list ([Spec](https://m2x.att.com/developer/documentation/feed#List-Search-Feeds))
  
 Get first page of feeds:
  
@@ -296,7 +296,7 @@ Every search can be combined with pagination:
 ```
 
 
-#### Get an item
+#### Get an item ([Spec](https://m2x.att.com/developer/documentation/feed#View-Feed-Details))
  
 ```
 	Feed feed = client.feeds().get("0e545075fd71aaabf5e85bfb502ea35a");
@@ -305,7 +305,7 @@ Every search can be combined with pagination:
 
 #### Working with streams
 
-Get list of streams:
+Get list of streams ([Spec](https://m2x.att.com/developer/documentation/feed#List-Data-Streams)):
 
 ```
     List<Stream> streams = client.feed("0e545075fd71aaabf5e85bfb502ea35a").streams().list();
@@ -317,7 +317,7 @@ Or in a bit longer form:
     List<Stream> streams = client.feeds().feed("0e545075fd71aaabf5e85bfb502ea35a").streams().list();
 ```
 
-Create or update stream:
+Create or update stream ([Spec](https://m2x.att.com/developer/documentation/feed#Create-Update-Data-Stream)):
 
 ```
     Stream stream = client.feed("").streams().create("Sample Stream", new Unit("speed", "kph"));
@@ -325,14 +325,14 @@ Create or update stream:
     client.feed("").streams().update("Sample Stream", new Unit("speed", "kph"));
 ```
 
-Add value to stream:
+Add value to stream ([Spec](https://m2x.att.com/developer/documentation/feed#Post-Data-Stream-Values)):
 
 ```
     client.feed("Feed Id").streams().addValues("Stream Name", new Value("Value to add"),
             new Value("Value to add", new Date()));
 ```
 
-It's possible to add several values in multiple streams:
+It's possible to add several values in multiple streams ([Spec](https://m2x.att.com/developer/documentation/feed#Post-Multiple-Values-to-Multiple-Streams)):
 
 ```
     Map<String, List<Value>> wrapper = new HashMap<String, List<Value>>();
@@ -343,7 +343,7 @@ It's possible to add several values in multiple streams:
     client.feed("Feed Id").addValues(wrapper);
 ```
 
-Get list of values:
+Get list of values ([Spec](https://m2x.att.com/developer/documentation/feed#List-Data-Stream-Values)):
 
 ```
     ValueListResponse response = client.feed("0e545075fd71aaabf5e85bfb502ea35a")
@@ -362,19 +362,19 @@ Method `values()` also support filtering values by start and the end date:
 
 #### Working with triggers
 
-Get the list of triggers:
+Get the list of triggers ([Spec](https://m2x.att.com/developer/documentation/feed#List-Triggers)):
 
 ```
     List<Trigger> triggers = client.feed("0e545075fd71aaabf5e85bfb502ea35a").triggers().list();
 ```
 
-Get specific trigger:
+Get specific trigger ([Spec](https://m2x.att.com/developer/documentation/feed#View-Trigger)):
 
 ```
     List<Trigger> triggers = client.feed("0e545075fd71aaabf5e85bfb502ea35a").triggers().get("1");
 ```
     
-Create a new instance with builder:
+Create a new instance with builder ([Spec](https://m2x.att.com/developer/documentation/feed#Create-Trigger)):
 
 ```
     import static com.att.m2x.client.builder.ModelBuilders.*
@@ -386,13 +386,13 @@ Create a new instance with builder:
     );
 ```
 
-Delete trigger:
+Delete trigger ([Spec](https://m2x.att.com/developer/documentation/feed#Delete-Trigger)):
 
 ```
     client().feed("0e545075fd71aaabf5e85bfb502ea35a").triggers().delete("2");
 ```
 
-Test trigger:
+Test trigger ([Spec](https://m2x.att.com/developer/documentation/feed#Test-Trigger)):
 
 ```
     client().feed("0e545075fd71aaabf5e85bfb502ea35a").triggers().test("1");
