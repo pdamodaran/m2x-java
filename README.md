@@ -41,7 +41,7 @@ After that in `target` directory two version of client will be created. One with
 Usage
 --------
 
-Client required Java version not less than 1.5 .
+Client required Java version not less than 1.5.
  
 Add the following to pom.xml to start using M2XClient.
 ```
@@ -51,6 +51,10 @@ Add the following to pom.xml to start using M2XClient.
 	<version>0.0</version>
 </dependency>
 ```
+
+The client has the following library dependencies:
+* Apache HttpComponents, 4.3.1, http://hc.apache.org/
+* Jackson, 2.3.0, https://github.com/FasterXML/jackson
 
 
 Example
