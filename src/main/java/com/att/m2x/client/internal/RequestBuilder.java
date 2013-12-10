@@ -77,6 +77,11 @@ public class RequestBuilder {
         return this;
     }
 
+    public RequestBuilder delete() {
+        this.method = HttpMethod.DELETE;
+        return this;
+    }
+
     public RequestBuilder delete(String path) {
         this.method = HttpMethod.DELETE;
         this.subUrl = path;

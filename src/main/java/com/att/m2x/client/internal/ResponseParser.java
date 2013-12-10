@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.ObjectReader;
 import org.apache.http.HttpResponse;
 
 import com.att.m2x.client.api.Page;
-import com.att.m2x.client.internal.deserializer.Basket;
+import com.att.m2x.client.internal.deserializer.ListResponse;
 import com.att.m2x.client.exception.ClientException;
 
 
@@ -66,13 +66,13 @@ public class ResponseParser {
     }
 
     public <T> List<T> list(Class<T> resultType) {
-        JavaType type = mapper.getTypeFactory().constructParametricType(Basket.class, resultType);
+        JavaType type = mapper.getTypeFactory().constructParametricType(ListResponse.class, resultType);
 
         ObjectReader reader = mapper.reader(type);
         try {
 
-            Basket<T> basket =  reader.readValue(response.getEntity().getContent());
-            return basket.getData();
+            ListResponse<T> listResponse =  reader.readValue(response.getEntity().getContent());
+            return listResponse.getData();
 
         } catch (JsonProcessingException jpex) {
             throw new ClientException("Malformed response", jpex);
@@ -83,6 +83,7 @@ public class ResponseParser {
         }
 
     }
+
 
 }
 

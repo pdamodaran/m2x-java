@@ -13,6 +13,7 @@ import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -85,6 +87,13 @@ public class KeyResourceTest extends BaseMockTest {
         Key response = client.keys().get(ENTITY_ID);
 
         assertThat(response, is(notNullValue()));
+        assertThat(response.isMaster(), is(true));
+        assertThat(response.getFeed(), is(nullValue()));
+        assertThat(response.getStream(), is(nullValue()));
+        assertThat(response.getExpiresAt(), is(nullValue()));
+        assertThat(response.getExpired(), is(nullValue()));
+        assertThat(response.getOrigin(), is(nullValue()));
+        assertThat(response.getFeedAccess(), is("private"));
     }
 
     @Test(expected = NotFoundException.class)

@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import com.att.m2x.client.internal.deserializer.Basket;
+import com.att.m2x.client.internal.deserializer.ListResponse;
 import com.att.m2x.client.internal.deserializer.PageDeserializer;
 
 
 @JsonDeserialize(using = PageDeserializer.class)
-public class Page<T> extends Basket<T> {
+public class Page<T> extends ListResponse<T> {
 
     private int currentPage;
     private int limit;

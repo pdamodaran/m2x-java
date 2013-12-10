@@ -20,7 +20,7 @@ import com.att.m2x.client.api.stream.Stream;
 import com.att.m2x.client.api.trigger.Trigger;
 
 
-public class BasketDeserializer extends JsonDeserializer<Basket> {
+public class BasketDeserializer extends JsonDeserializer<ListResponse> {
 
     private static Map<String, Class> FIELD_TO_CLASS = new HashMap<String, Class>();
     static {
@@ -33,7 +33,7 @@ public class BasketDeserializer extends JsonDeserializer<Basket> {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Basket deserialize(JsonParser parser, DeserializationContext context)
+    public ListResponse deserialize(JsonParser parser, DeserializationContext context)
             throws IOException, JsonProcessingException {
 
         List items;
@@ -50,12 +50,12 @@ public class BasketDeserializer extends JsonDeserializer<Basket> {
                         items.add(it.next());
                     }
 
-                    return new Basket(items);
+                    return new ListResponse(items);
                 }
             }
         }
 
-        return new Basket(Collections.emptyList());
+        return new ListResponse(Collections.emptyList());
     }
 
 }

@@ -34,7 +34,6 @@ public class M2XClient {
         assert apiEndpoint != null;
 
         RequestConfig config = RequestConfig.custom()
-                //TODO: PK,29/11:builder
                 .setConnectTimeout(10000)
                 .setSocketTimeout(10000)
                 .build();
@@ -78,6 +77,7 @@ public class M2XClient {
     public FeedSubResource feed(String id) {
         return root.drill("feeds/" + id, FeedSubResource.class);
     }
+
 
 }
 

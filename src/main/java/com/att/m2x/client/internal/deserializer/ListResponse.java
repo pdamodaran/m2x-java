@@ -5,11 +5,11 @@ import java.util.List;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @JsonDeserialize(using = BasketDeserializer.class)
-public class Basket<T> {
+public class ListResponse<T> {
 
     private List<T> data;
 
-    public Basket(List<T> data) {
+    public ListResponse(List<T> data) {
         this.data = data;
     }
 

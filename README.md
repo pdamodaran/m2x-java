@@ -18,13 +18,32 @@ If you have questions about any M2X specific terms, please consult the M2X gloss
 Setup
 -----
  
-At the present time client is not submitted to any of existing Maven repositories. To start using it now please build
+At the moment client is not submitted to any of existing Maven repositories. To start using it now please build
 and install it locally.
  
-[Maven 2](http://maven.apache.org/) is required.
+[Maven 3](http://maven.apache.org/) is required for client building. After Maven installation please execute
+the following command from root directory of client source code (folder where `pom.xml` file is placed) to build:
+
+```
+    mvn package install
+```
+
+Or if client will be used not in maven-compatibable projects:
+
+```
+    mvn package
+```
+
+After that in `target` directory two version of client will be created. One without any dependencies, named
+`m2x-java-client-*VERSION*`. Another, with `one-jar` suffix, with all dependencies inside.
+
+
+Usage
+--------
+
+Client required Java version not less than 1.5 .
  
 Add the following to pom.xml to start using M2XClient.
- 
 ```
 <dependency>
 	<groupId>com.att.m2x</groupId>
@@ -34,7 +53,7 @@ Add the following to pom.xml to start using M2XClient.
 ```
 
 
-Example Usage
+Example
 -------------
 
 To create a client instance the only one parameter, the API Key, is required.

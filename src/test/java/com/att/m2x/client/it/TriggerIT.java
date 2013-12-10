@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.att.m2x.client.api.Status;
 import com.att.m2x.client.api.trigger.Condition;
 import com.att.m2x.client.api.trigger.Trigger;
 import com.att.m2x.client.builder.ModelBuilders;
@@ -38,7 +39,7 @@ public class TriggerIT extends BaseResourceIT {
         Trigger trigger = client.feeds().feed(prop("feed.id")).triggers().create(
                 ModelBuilders.trigger().stream(prop("stream.id")).name(name)
                         .condition(Condition.EQUAL).value(String.valueOf(10))
-                        .callback("http://example.com")
+                        .callback("http://example.com").status(Status.ENABLED)
 
         );
 
