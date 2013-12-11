@@ -28,7 +28,7 @@ the following command from root directory of client source code (folder where `p
     mvn package install
 ```
 
-`install` can be omitted in case client is used in non-maven environment.
+`install` can be omitted in case client is used in non-Maven environment.
 
 Afterwards, two version of the client will be created in the `target` directory. One without any dependencies, named
 `m2x-java-client-*VERSION*` and Another, with `one-jar` suffix, with all dependencies inside.
@@ -112,8 +112,7 @@ The first parameter of get() is the Blueprint id `blueprint.getId();`
 
 #### Create new instance ([Spec](https://m2x.att.com/developer/documentation/datasource#Create-Blueprint))
 
-To simplify the creation of a new object client provides set of builders. Use static import to take builder for
-required object type:
+To simplify the creation of a new object, the M2X Java client provides a set of builders. Use static import to take builder for required object type:
 
 ```
 	import static com.att.m2x.client.builder.ModelBuilders.blueprint;
@@ -124,14 +123,12 @@ required object type:
 	);
 ```
 
-If for some reason builder is not suitable, client can use the map of objects. This map store pairs of String and Object
-where map key is parameters name and map value is value of given parameter. Basic types, Date and collection are supported as
-parameter value.
+If for some reason builder is not suitable, the client can use the map of objects. This map store pairs of String and Object where map key is the parameters name and map value is the value of a given parameter. Basic types, Date and collection are supported as parameter value.
 
-Please be careful with case and spelling of the parameters name. Client will throw `InternalServerErrorException`
-exception when name of parameters is incorrect, and 'UnprocessableEntityException' when value is incorrect or missed.
+Please be careful with case and spelling of the parameter's name. The client will throw `InternalServerErrorException`
+exception when a parameter's name is incorrect, and 'UnprocessableEntityException' when value is incorrect or missed.
 
-Above example can be written in the following form:
+The above example can be written in the following form:
  
 ```
 	Map<String, Object> data = new HashMap<String, Object>();
@@ -145,8 +142,7 @@ Above example can be written in the following form:
 
 #### Update item  ([Spec](https://m2x.att.com/developer/documentation/datasource#Update-Blueprint-Details))
 
-The same as for object creating, updating can be performed through using builder which is provided
-by the client:
+Similar to object creation, updating can be performed using the builder provided by the client:
 
 ```
 	import static com.att.m2x.client.builder.ModelBuilders.*
@@ -158,9 +154,9 @@ by the client:
 
 ```
 
-Please notice that creating and updating reuses the same set of builders.
+Please note that creating and updating reuses the same set of builders.
 
-Or with using map:
+Or, using map:
 ```
 	Map<String, Object> data = new HashMap<String, Object>();
 	data.put("name", "Sample Blueprint");
