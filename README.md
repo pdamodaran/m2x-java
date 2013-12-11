@@ -28,11 +28,7 @@ the following command from root directory of client source code (folder where `p
     mvn package install
 ```
 
-Or if the client will be used not in maven-compatibable projects:
-
-```
-    mvn package
-```
+`install` can be omitted in case client is used in non-maven environment.
 
 Afterwards, two version of the client will be created in the `target` directory. One without any dependencies, named
 `m2x-java-client-*VERSION*` and Another, with `one-jar` suffix, with all dependencies inside.
@@ -115,35 +111,43 @@ The first parameter of get() is the Blueprint id `blueprint.getId();`
 
 
 #### Create new instance ([Spec](https://m2x.att.com/developer/documentation/datasource#Create-Blueprint))
- 
-Library provide builder to make this process funny:
- 
+
+To simplify the creation of a new object client provides set of builders. Use static import to take builder for
+required object type:
+
 ```
-	import static com.att.m2x.client.builder.ModelBuilders.*
+	import static com.att.m2x.client.builder.ModelBuilders.blueprint;
   
 	Blueprint blueprint = client.blueprints().create(
    	     blueprint().name("Sample Blueprint").visibility(Visibility.PRIVATE)
                 	.tags("Tag One", "Tag Two")
 	);
 ```
- 
-Or use `Map<String, Object>` if builder is not ***TBD***
+
+If for some reason builder is not suitable, client can use the map of objects. This map store pairs of String and Object
+where map key is parameters name and map value is value of given parameter. Basic types, Date and collection are supported as
+parameter value.
+
+Please be careful with case and spelling of the parameters name. Client will throw `InternalServerErrorException`
+exception when name of parameters is incorrect, and 'UnprocessableEntityException' when value is incorrect or missed.
+
+Above example can be written in the following form:
  
 ```
 	Map<String, Object> data = new HashMap<String, Object>();
 	data.put("name", "Sample Blueprint");
 	data.put("visibility", Visibility.PRIVATE);
+	data.put("tags", "Tag One,Tag Two");
 	
 	Blueprint blueprint = client.blueprints().create(data);
 ```
- 
-In case one of the required parameters is missing, the library will throw `UnprocessableEntityException`.
 
 
 #### Update item  ([Spec](https://m2x.att.com/developer/documentation/datasource#Update-Blueprint-Details))
- 
-Like in case of creating, use two ways to create objects, with builder or with date in map.
- 
+
+The same as for object creating, updating can be performed through using builder which is provided
+by the client:
+
 ```
 	import static com.att.m2x.client.builder.ModelBuilders.*
   
@@ -151,7 +155,19 @@ Like in case of creating, use two ways to create objects, with builder or with d
         	blueprint().name("Sample Blueprint").visibility(Visibility.PRIVATE)
                 	.tags("Tag One", "Tag Two")
 	);
-	
+
+```
+
+Please notice that creating and updating reuses the same set of builders.
+
+Or with using map:
+```
+	Map<String, Object> data = new HashMap<String, Object>();
+	data.put("name", "Sample Blueprint");
+	data.put("visibility", Visibility.PRIVATE);
+	data.put("tags", "Tag One,Tag Two");
+
+	Blueprint blueprint = client.blueprints().update(blueprint.getId(), data);
 ```
 
 
