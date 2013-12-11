@@ -18,7 +18,7 @@ If you have questions about any M2X specific terms, please consult the M2X gloss
 Setup
 -----
  
-At the moment client is not submitted to any of existing Maven repositories. To start using it now please build
+The M2X Java client is not submitted to any of the existing Maven repositories. To start using it now, please build
 and install it locally.
  
 [Maven 3](http://maven.apache.org/) is required for client building. After Maven installation please execute
@@ -28,20 +28,20 @@ the following command from root directory of client source code (folder where `p
     mvn package install
 ```
 
-Or if client will be used not in maven-compatibable projects:
+Or if the client will be used not in maven-compatibable projects:
 
 ```
     mvn package
 ```
 
-After that in `target` directory two version of client will be created. One without any dependencies, named
-`m2x-java-client-*VERSION*`. Another, with `one-jar` suffix, with all dependencies inside.
+Afterwards, two version of the client will be created in the `target` directory. One without any dependencies, named
+`m2x-java-client-*VERSION*` and Another, with `one-jar` suffix, with all dependencies inside.
 
 
-Usage
+Requirements and Dependencies
 --------
 
-Client required Java version not less than 1.5.
+The M2X Java client requires **Java version 1.5 or greater**.
  
 Add the following to pom.xml to start using M2XClient.
 ```
@@ -60,9 +60,9 @@ The client has the following library dependencies:
 Example
 -------------
 
-To create a client instance the only one parameter, the API Key, is required.
-Your Master API Key can be found in your account settings, also a feed API key is available in your Data Source details
-screen. To create a client instance just do
+To create a client instance only one parameter, the API Key, is required.
+Your Master API Key can be found in your account settings, and a feed API key is available in your Data Source details
+screen. To create a client instance, do the following:
  
 ```
 	import com.att.m2x.client.M2XClient;
@@ -71,7 +71,7 @@ screen. To create a client instance just do
 ```
  
 The client provides an interface to access your Blueprints, Batches,
-DataSources, Feeds and Keys.
+Data Sources, Feeds and Keys.
 
 
 ### Blueprints
@@ -82,7 +82,7 @@ Get an instance of `BlueprintResource` before starting to work with Blueprints:
 	client.blueprints()
 ```
  
-This is thread-safe objects, so they can be stored and reused.
+These are thread-safe objects, so they can be stored and reused.
  
  
 #### Fetch a collection of items ([Spec](https://m2x.att.com/developer/documentation/datasource#List-Blueprints)):
@@ -137,7 +137,7 @@ Or use `Map<String, Object>` if builder is not ***TBD***
 	Blueprint blueprint = client.blueprints().create(data);
 ```
  
-In case of one of the required parameters are missing library will throw `UnprocessableEntityException`.
+In case one of the required parameters is missing, the library will throw `UnprocessableEntityException`.
 
 
 #### Update item  ([Spec](https://m2x.att.com/developer/documentation/datasource#Update-Blueprint-Details))
@@ -165,13 +165,13 @@ Like in case of creating, use two ways to create objects, with builder or with d
 
 ### DataSources
  
-`DataSourceResource` has the same API like `BlueprintResource`. Get it from `M2XClient`:
+`DataSourceResource` has an API similar to `BlueprintResource`. Get it from `M2XClient`:
  
 ```
 	DataSourceResource dataSetResource = client.dataSources()
 ```
 
-and use it in the same way. Except creating new instance and update:
+and use it in the same way, except creating new instance and update them:
  
 ```
 	import static com.att.m2x.client.builder.ModelBuilders.*
@@ -191,12 +191,12 @@ Get `BatchResource` to start working with batches:
 	client.batches();
 ```
  
-This resource provides the same basic api to work with batches like `BlueprintResource`.
+This resource provides the same basic API to work with batches like `BlueprintResource`.
 
 
 #### List DataSources from a Batch ([Spec](https://m2x.att.com/developer/documentation/datasource#List-Data-Sources-from-a-Batch))
  
-To fetch all the datasources in given batch use the following snippet:
+To fetch all the datasources in a given batch, use the following snippet:
  
 ```
 	Page<DataSource> sources = client.batches().batch("188a0afb3adc379706e780a4eafbd153").dataSources();
@@ -223,13 +223,13 @@ All operation for Keys is placed inside the `KeyResource`:
 
 #### Fetch the collection of keys ([Spec](https://m2x.att.com/developer/documentation/keys#List-Keys))
  
-Return list of all registered keys:
+Return a list of all registered keys:
  
 ```
 	List<Key> keys = client.keys().list();
 ```
  
-Or return list of keys for a given Feed:
+Or return a list of keys for a given Feed:
 
 ```
 	List<Key> keys = client.keys().list("61179472a42583cffc889478010a092a");
@@ -244,7 +244,7 @@ Can be done with builder or map:
     Key key = client.keys().create(key().name("Test Key").permissions(Permission.GET));
 ```
 
-In case using of map please keep in mind that permissions should be placed inside either list or set.
+When using map, please keep in mind that permissions should be placed inside either list or set.
 
 
 #### Update key ([Spec](https://m2x.att.com/developer/documentation/keys#Update-Key))
@@ -270,9 +270,9 @@ In case using of map please keep in mind that permissions should be placed insid
 
 ### Feeds
  
-Feed is accessible by the `feeds()` method of `M2XClient` instance.
-Feeds creation is done when creating a DataSource, Blueprint or Batch.
-So that is why `FeedResource` can't create or update or delete Feed.
+Feed is accessible by the `feeds()` method of the `M2XClient` instance.
+Feeds creation occurs when creating a DataSource, Blueprint or Batch.
+That is why `FeedResource` can't create or update or delete Feed.
 
 
 #### Fetch a list ([Spec](https://m2x.att.com/developer/documentation/feed#List-Search-Feeds))
@@ -334,7 +334,7 @@ Get list of streams ([Spec](https://m2x.att.com/developer/documentation/feed#Lis
     List<Stream> streams = client.feed("0e545075fd71aaabf5e85bfb502ea35a").streams().list();
 ```
 
-Or in a bit longer form:
+Or in a longer form:
 
 ```
     List<Stream> streams = client.feeds().feed("0e545075fd71aaabf5e85bfb502ea35a").streams().list();
@@ -391,7 +391,7 @@ Get the list of triggers ([Spec](https://m2x.att.com/developer/documentation/fee
     List<Trigger> triggers = client.feed("0e545075fd71aaabf5e85bfb502ea35a").triggers().list();
 ```
 
-Get specific trigger ([Spec](https://m2x.att.com/developer/documentation/feed#View-Trigger)):
+Get a specific trigger ([Spec](https://m2x.att.com/developer/documentation/feed#View-Trigger)):
 
 ```
     List<Trigger> triggers = client.feed("0e545075fd71aaabf5e85bfb502ea35a").triggers().get("1");
