@@ -28,7 +28,7 @@ the following command from root directory of client source code (folder where `p
     mvn package install
 ```
 
-`install` can be omitted in case client is used in non-Maven environment.
+`install` can be omitted in case the client is used in a non-Maven environment.
 
 Afterwards, two version of the client will be created in the `target` directory. One without any dependencies, named
 `m2x-java-client-*VERSION*` and Another, with `one-jar` suffix, with all dependencies inside.
