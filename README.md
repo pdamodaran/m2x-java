@@ -21,7 +21,7 @@ Setup
 The M2X Java client is not submitted to any of the existing Maven repositories. To start using it now, please build
 and install it locally.
  
-[Maven 3](http://maven.apache.org/) is required for client building. After Maven installation please execute
+[Maven 3](http://maven.apache.org/) is required for client building. After [Maven installation](http://maven.apache.org/download.cgi) please execute
 the following command from root directory of client source code (folder where `pom.xml` file is placed) to build:
 
 ```
