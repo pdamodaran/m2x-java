@@ -2,7 +2,7 @@ Java M2X API Client
 =====================
  
 The AT&T M2X API provides all the needed operations and methods to connect your devices to AT&T's M2X service. This
-client provides an easy to use interface for your favorite language, Java.
+client provides an easy to use interface for your favorite language, [Java](https://www.java.com/en/).
  
  
 Getting Started
@@ -30,8 +30,8 @@ the following command from root directory of client source code (folder where `p
 
 `install` can be omitted in case the client is used in a non-Maven environment.
 
-Afterwards, the client's jar will be created in the `target` directory. By default, Maven builds jar without dependencies.
-Please see required libraries and their version in the next section.
+Afterwards, the client's jar will be created in the `target` directory. By default, Maven builds jar files without dependencies.
+Please see required libraries and their versions in the *Requirements and Dependencies* section.
 
 To build client with all dependencies included please run the following command:
 
