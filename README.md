@@ -30,8 +30,16 @@ the following command from root directory of client source code (folder where `p
 
 `install` can be omitted in case the client is used in a non-Maven environment.
 
-Afterwards, two version of the client will be created in the `target` directory. One without any dependencies, named
-`m2x-java-client-*VERSION*` and Another, with `one-jar` suffix, with all dependencies inside.
+Afterwards, the client's jar will be created in the `target` directory. By default, Maven builds jar without dependencies.
+Please see required libraries and their version in the next section.
+
+To build client with all dependencies included please run the following command:
+
+```
+    mvn package install -P one-jar
+```
+
+See `target` directory for jar with `one-jar` suffix in the name.
 
 
 Requirements and Dependencies
