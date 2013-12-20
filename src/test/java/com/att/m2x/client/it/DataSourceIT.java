@@ -57,6 +57,7 @@ public class DataSourceIT extends BaseResourceIT {
         assertThat(dataSource.getUpdated(), is(notNullValue()));
         //~
         assertThat(dataSource.getBatch(), is(notNullValue()));
+        assertThat(dataSource.getBatchName(), is(notNullValue()));
     }
 
     @Test
