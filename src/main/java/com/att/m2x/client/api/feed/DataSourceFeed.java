@@ -1,6 +1,8 @@
 package com.att.m2x.client.api.feed;
 
 
+//see @Feed
+@Deprecated
 public class DataSourceFeed extends Feed {
 
     private String batch;

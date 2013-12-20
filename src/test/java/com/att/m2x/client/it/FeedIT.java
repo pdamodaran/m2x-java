@@ -2,6 +2,7 @@ package com.att.m2x.client.it;
 
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
@@ -13,13 +14,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.att.m2x.client.api.DistanceUnit;
 import com.att.m2x.client.api.FeedType;
 import com.att.m2x.client.api.Page;
-import com.att.m2x.client.api.datasource.Batch;
 import com.att.m2x.client.api.feed.BatchFeed;
 import com.att.m2x.client.api.feed.BlueprintFeed;
 import com.att.m2x.client.api.feed.DataSourceFeed;
@@ -59,6 +58,24 @@ public class FeedIT extends BaseResourceIT {
         //~
         //assertThat(feed.getBatch(), is(notNullValue()));
     }
+
+    @Test
+    public void verifySearchByType() {
+        Page<Feed> feeds = client.feeds().list(QueryBuilders.type(FeedType.BATCH));
+
+        assertThat(feeds.getData(), is(not(empty())));
+    }
+
+    @Test
+    public void verifyThatBatchFeedHasDatasourcesObject() {
+        Page<Feed> feeds = client.feeds().list(QueryBuilders.type(FeedType.BATCH));
+
+        assertThat(feeds.getData(), is(not(empty())));
+
+        Feed feed = feeds.getData().get(0);
+        assertThat(feed.getRawMap(), is(hasKey("datasources")));
+    }
+
 
     @Test
     public void verifyLocationSearch() {
