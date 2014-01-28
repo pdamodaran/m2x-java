@@ -9,6 +9,37 @@
   <version>0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
+  <name>Java M2X API Client</name>
+  <description>
+    The AT&amp;T M2X client provides all the needed operations
+    and methods to connect devices to AT&amp;T's M2X service
+  </description>
+  <url>https://m2x.att.com/</url>
+
+  <licenses>
+    <license>
+      <name></name>
+      <url></url>
+      <distribution></distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <url>https://github.com/attm2x/m2x-java</url>
+  </scm>
+
+  <developers>
+    <developer>
+      <id>pkoshaleu</id>
+      <name>Pavel Koshaleu</name>
+      <email>pkoshaleu@tula.co</email>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>+3</timezone>
+    </developer>
+  </developers>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.5</java.version>
