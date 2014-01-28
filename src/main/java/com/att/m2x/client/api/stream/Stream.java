@@ -2,17 +2,15 @@ package com.att.m2x.client.api.stream;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Stream {
 
     private String id;
     private String name;
     private String value;
-    @JsonProperty("latest_value_at")private Date latestValueAt;
+    @JsonProperty("latest_value_at") private Date latestValueAt;
     private String min;
     private String max;
     private Unit unit;

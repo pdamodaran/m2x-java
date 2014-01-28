@@ -19,9 +19,6 @@ import org.junit.Test;
 import com.att.m2x.client.api.DistanceUnit;
 import com.att.m2x.client.api.FeedType;
 import com.att.m2x.client.api.Page;
-import com.att.m2x.client.api.feed.BatchFeed;
-import com.att.m2x.client.api.feed.BlueprintFeed;
-import com.att.m2x.client.api.feed.DataSourceFeed;
 import com.att.m2x.client.api.feed.Feed;
 import com.att.m2x.client.api.feed.Location;
 import com.att.m2x.client.api.feed.LogEntry;
@@ -35,14 +32,14 @@ public class FeedIT extends BaseResourceIT {
 
     @Test
     public void verifyBlueprintFeed() {
-        BlueprintFeed feed = (BlueprintFeed) client.feeds().get(prop("feed.blueprint.id"));
+        Feed feed = client.feeds().get(prop("feed.blueprint.id"));
 
         assertThat(feed, is(notNullValue()));
     }
 
     @Test
     public void verifyBatchFeed() {
-        BatchFeed feed = (BatchFeed) client.feeds().get(prop("feed.batch.id"));
+        Feed feed = client.feeds().get(prop("feed.batch.id"));
 
         assertThat(feed, is(notNullValue()));
         //~
@@ -52,7 +49,7 @@ public class FeedIT extends BaseResourceIT {
 
     @Test
     public void verifyDataSourceFeed() {
-        DataSourceFeed feed = (DataSourceFeed) client.feeds().get(prop("feed.datasource.id"));
+        Feed feed = client.feeds().get(prop("feed.datasource.id"));
 
         assertThat(feed, is(notNullValue()));
         //~

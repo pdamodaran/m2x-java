@@ -7,9 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import com.att.m2x.client.api.Status;
 import com.att.m2x.client.api.Visibility;
@@ -17,15 +14,7 @@ import com.att.m2x.client.api.stream.Stream;
 import com.att.m2x.client.api.trigger.Trigger;
 
 
-/*
-  TODO: PK,20/12, Sometime type information is missed in response, all type-dependent fields will be placed in raws map
-@JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonSubTypes({
-        @Type(value = BatchFeed.class, name="batch"),
-        @Type(value = BlueprintFeed.class, name="blueprint"),
-        @Type(value = DataSourceFeed.class, name="datasource")
-})*/
-public /*abstract*/ class Feed {
+public class Feed {
 
     protected String id;
     protected String name;

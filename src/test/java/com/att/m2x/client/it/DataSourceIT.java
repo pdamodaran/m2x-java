@@ -1,5 +1,6 @@
 package com.att.m2x.client.it;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.is;
@@ -90,7 +91,7 @@ public class DataSourceIT extends BaseResourceIT {
 
         assertThat(dataSources, is(notNullValue()));
         assertThat(dataSources.getData().size(), greaterThan(0));
-        assertThat(dataSources.getData().get(0).getBatch(), is(prop("batch.id")));
+        assertThat(dataSources.getData().get(0).getBatch(), is(containsString(prop("batch.id"))));
     }
 
 }
