@@ -18,9 +18,9 @@
 
   <licenses>
     <license>
-      <name></name>
-      <url></url>
-      <distribution></distribution>
+      <name>MIT License</name>
+      <url>https://raw.github.com/attm2x/m2x-java/master/LICENSE</url>
+      <distribution>repo</distribution>
     </license>
   </licenses>
 
@@ -32,7 +32,7 @@
     <developer>
       <id>pkoshaleu</id>
       <name>Pavel Koshaleu</name>
-      <email>pkoshaleu@tula.co</email>
+      <email>pavelk@citrusbyte.com</email>
       <roles>
         <role>developer</role>
       </roles>
